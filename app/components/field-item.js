@@ -12,7 +12,8 @@ export default Ember.Component.extend({
 			var newValue = selectedObj.optName;
 			this.set('field.value', newValue);
 			console.log('on change',oldValue, newValue);
-			this.attrs.updateHiddenFields(oldValue, newValue);
+			this.attrs.updateHiddenFields(this.get('field.optionsList').filterBy('optName', oldValue),
+				this.get('field.optionsList').filterBy('optName', newValue));
 		},
 		deleteField(field) {
 			this.attrs.deleteField(field);

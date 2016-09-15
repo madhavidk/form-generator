@@ -1,8 +1,12 @@
-Showing details of form {{model.name}}
+<h4>Showing details of form {{model.name}}</h4>
 <br />
+<div class="fields-list">
 {{#each model.fields as |field|}}
     {{field-item field=field updateHiddenFields=(action "updateHiddenFields") }}
 {{/each}}
-<button {{action "submitForm"}}>Submit</button>
-<button {{action "cancelForm"}}>Cancel</button>
+</div>
+<div class="form-actions">
+<button class="btn-submit-form" {{action "submitForm"}}>Submit</button>
+<button class="btn-cancel-form" {{action "cancelForm"}}>Cancel</button>
+</div>
 {{outlet}}

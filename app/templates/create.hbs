@@ -2,12 +2,18 @@
 <br />
 <span>Enter Form Name: </span><input type="text" size=25>
 <br/>
+<div class="fields-list">
 {{#each model.fields as |field|}}
     {{field-item field=field showDelete=true
         updateHiddenFields=(action "updateHiddenFields")
         deleteField=(action "deleteField")}}
 {{/each}}
-<button {{action "addNewField"}}>Add Field </button>
-<button {{action "createForm"}}>Create Form</button>
-<button  {{action "cancelForm"}}>Cancel</button>
+</div>
+<div class="btn-group">
+<button  class="btn-primary" {{action "addNewField"}}>Add Field </button>
+</div>
+<div class="form-actions">
+<button class="btn-submit-form" {{action "createForm"}}>Create Form</button>
+<button class="btn-cancel-form" {{action "cancelForm"}}>Cancel</button>
+</div>
 {{outlet}}

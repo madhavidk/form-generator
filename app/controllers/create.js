@@ -6,8 +6,16 @@ export default Ember.Controller.extend({
 	newFormFields: Ember.computed.oneWay('model.fields'),
 	actions: {
 		updateHiddenFields(oldVal, newVal) {
-			console.log(oldVal, newVal);
-			console.log(this.get('model.fields').filterBy('optName',newVal));
+			if (oldVal[0] && oldVal[0].relatedFields) {
+				oldVal[0].relatedFields.forEach(function (item) {
+					this.get('model.fields').filterBy('id', item)[0].set('isDefault', false);
+				}.bind(this));
+			}
+			if (newVal[0] && newVal[0].relatedFields) {
+				newVal[0].relatedFields.forEach(function (item) {
+					this.get('model.fields').filterBy('id', item)[0].set('isDefault', true);
+				}.bind(this));
+			}
 		},
 		addNewField() {
 			let count = this.get('model.fields').length;
@@ -33,7 +41,7 @@ export default Ember.Controller.extend({
 					{"id":5,"name":"Enter Country", "value": "",  "type": "text", "isDefault": false, "isMandatory": true}
 				]
 			};
-			this.get('appData.data').push(newData);
+			this.get('appData.data').pushObject(newData);
 			this.transitionToRoute('application');
 		}
 	}
