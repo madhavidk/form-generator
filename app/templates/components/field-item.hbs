@@ -1,0 +1,19 @@
+{{#if field.isDefault}}
+	<label> {{field.name}} </label>
+	{{#if field.isText}}
+		{{input type="text" size="25" value=field.value}}
+	{{/if}}
+	{{#if field.isNumber}}
+		{{input type="number" size="25" value=field.value}}
+	{{/if}}
+	{{#if field.isEnumeration}}
+		{{#power-select options=field.optionsList selected=selectedOption onchange=(action "onSelectedChanged") as |option|}}
+			{{option.optName}}
+		{{/power-select}}
+	{{/if}}
+{{/if}}
+{{fieldValue}}
+{{#if showDeleteBtn}}
+<button {{action "deleteField" field}}>Remove Field</button>
+{{/if}}
+<br/>

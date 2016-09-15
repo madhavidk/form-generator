@@ -1,0 +1,8 @@
+Showing details of form {{model.name}}
+<br />
+{{#each model.fields as |field|}}
+    {{field-item field=field updateHiddenFields=(action "updateHiddenFields") }}
+{{/each}}
+<button {{action "submitForm"}}>Submit</button>
+<button {{action "cancelForm"}}>Cancel</button>
+{{outlet}}

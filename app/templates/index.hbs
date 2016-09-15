@@ -1,0 +1,6 @@
+<ul>
+  {{#each model as |item|}}
+    <li {{action "gotoCreate" item.id}}>{{item.id}} - {{item.name}}!</li>
+  {{/each}}
+</ul>
+{{outlet}}
